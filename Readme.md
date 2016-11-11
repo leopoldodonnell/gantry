@@ -1,6 +1,6 @@
 # Gantry - *A moveable framework to support cloud-container infrastructure*
 
-<img ng-src="/repository/leopoldodonnell/gantry/status?token=" data-title="Container Repository on Quay" src="https://quay.io/repository/leopoldodonnell/gantry/status?token=">
+<img ng-src="https://quay.io/repository/leopoldodonnell/gantry/status?token=" data-title="Container Repository on Quay" src="https://quay.io/repository/leopoldodonnell/gantry/status?token=">
 
 
 <p align='center'><img align="center" src="gantry.jpg" width="50%" height="50%"></p>
