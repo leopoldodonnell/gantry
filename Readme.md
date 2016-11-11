@@ -18,6 +18,7 @@ enterprise infrastructure development. These tools include:
 1. [Hashicorp's terraform](https:///www.terraform.io)
 1. [Kubernetes kubectl](http://kubernetes.io/docs/user-guide/kubectl-overview/)
 1. [Werker's stern](https://github.com/wercker/stern)
+1. [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/)
 
 These binaries need credentials and/or access to docker server to do their work, so these are made available to the container 
 through volume mounts. Available mounts include the following:
