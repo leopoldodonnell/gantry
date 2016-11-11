@@ -1,6 +1,6 @@
 # Gantry - A moveable framework for supporting cloud-container infrastructure
  
-<center><img align="center" src="gantry.jpg" width="50%" height="50%"></center>
+<p align='center'><img align="center" src="gantry.jpg" width="50%" height="50%"></p>
 
 
 ## Building Gantry
