@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+docker build --rm -t gantry \
+  --build-arg PACKER_VERSION='0.10.2' \
+  --build-arg TERRAFORM_VERSION='0.7.9' \
+  --build-arg KUBECTL_VERSION='1.3.4' \
+  --build-arg STERN_VERSION='1.0.0' \
+  --build-arg DOCKER_VERSION='1.11.2' \
+  .
+

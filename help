@@ -1,0 +1,24 @@
+#!/bin/sh
+
+cat <<EOF
+
+gantry - a scaffold for building and managing cloud infrastructure without a low installation footprint
+
+gantry currently offers the following tools:
+    - terraform
+    - packer
+    - kubectl
+    - stern
+    - docker
+
+To run one of these tools against code in your current directory:
+
+> docker --rm -ti -v ${PWD}:/share gantry {toolname tool_args}
+
+Mount points that can be useful to these tools include:
+
+  - /root/.aws  to access your AWS credentials
+  - /root/.kube to access your Kubernetes kubectl configuration
+  - /var/run/docker.sock to share a docker socket for docker commands within the container
+
+EOF
