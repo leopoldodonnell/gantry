@@ -1,5 +1,6 @@
 #!/bin/bash
-
+#
+# Use this script to manage versions of software found in the Dockerfile
 
 docker build --rm -t gantry \
   --build-arg PACKER_VERSION='0.10.2' \
@@ -7,5 +8,6 @@ docker build --rm -t gantry \
   --build-arg KUBECTL_VERSION='1.3.4' \
   --build-arg STERN_VERSION='1.0.0' \
   --build-arg DOCKER_VERSION='1.11.2' \
+  --build-arg DOCKER_COMPOSE_VERSION='1.8.1' \
   .
 

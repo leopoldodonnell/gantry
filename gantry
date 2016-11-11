@@ -9,7 +9,7 @@
 #
 
 # Update this if you're using a private docker registry
-REGISTRY=""
+REGISTRY="quay.io/leopoldodonnell/"
 
 VOLUMES="-v $HOME/.aws:/root/.aws \
         -v ${PWD}:/share \
@@ -33,6 +33,6 @@ done
 # get rid of options passed the to script and not passed onto the container
 shift $opt_count
 
-docker run -ti --rm \
+docker run --rm \
   ${VOLUMES} \
   ${REGISTRY}gantry $@

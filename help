@@ -10,6 +10,8 @@ gantry currently offers the following tools:
     - kubectl
     - stern
     - docker
+    - docker-compose
+    - aws cli
 
 To run one of these tools against code in your current directory:
 
