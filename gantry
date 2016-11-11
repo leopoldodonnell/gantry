@@ -1,6 +1,14 @@
 #!/bin/bash
+#
+# gantry - Run the gantry container with appropriate volume mounts
+#
+# Usage: gantry [-c workdir] [tool tool_args]
+#
+#   -c : run gantry from within another docker container and use its volume mounts using
+#        the workdir argument as the working directory for the gantry container
+#
 
-
+# Update this if you're using a private docker registry
 REGISTRY=""
 
 VOLUMES="-v $HOME/.aws:/root/.aws \
@@ -10,12 +18,12 @@ VOLUMES="-v $HOME/.aws:/root/.aws \
 
 opt_count=0
 
-while getopts "c" arg > /dev/null 2>&1; do
+while getopts "c:" arg > /dev/null 2>&1; do
   case "${arg}" in
     c)
-      opt_count=$((opt_count + 1))
+      opt_count=$((opt_count + 2))
       MY_CONTAINER_ID=`cat /proc/self/cgroup |awk -F '/' '$2 = "docker" && NR == 1 {print $NF }'`
-      VOLUMES="--volumes-from ${MY_CONTAINER_ID} -w ${CONTAINER_PATH}"
+      VOLUMES="--volumes-from ${MY_CONTAINER_ID} -w ${OPTARG}"
       ;;
     *)
       ;;
