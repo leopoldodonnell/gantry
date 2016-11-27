@@ -1,6 +1,6 @@
 # Gantry - *A moveable framework to support cloud-container infrastructure*
 
-<img ng-src="https://guay.io/repository/leopoldodonnell/gantry/status?token=" data-title="Container Repository on Quay" src="https://quay.io/repository/leopoldodonnell/gantry/status?token=">
+[![Docker Repository on Quay](https://quay.io/repository/leopoldodonnell/gantry/status "Docker Repository on Quay")](https://quay.io/repository/leopoldodonnell/gantry)
 
 <p align='center'><img align="center" src="gantry.jpg" width="50%" height="50%"></p>
 
@@ -18,6 +18,7 @@ enterprise infrastructure development. These tools include:
 1. [Kubernetes kubectl](http://kubernetes.io/docs/user-guide/kubectl-overview/)
 1. [Werker's stern](https://github.com/wercker/stern)
 1. [Kubernetes helm](https://github.com/kubernetes/helm)
+1. [AWS CLI](https://docs.aws.amazon.com/cli/latest/reference/)
 
 These binaries need credentials and/or access to docker server to do their work, so these are made available to the container 
 through volume mounts. Available mounts include the following:
@@ -72,22 +73,25 @@ Now you've logged into your AWS ECR registry and you can start pushing/pulling i
 ### Gantry in Practice
 
 Running things from a terminal is pretty straight forward, you simply prefix the commands you would have run directly with
-the `gantry` script. You do have to be aware of the working directory needs to be shared with gantry and that gantry cannot
-*see* other files from your filesystem. If you're using the `gantry` script, it will share your current working directory. As
-mentioned above, other files, such as your AWS credentials, are made available by sharing them as volume mounts; you can use
-your default credentials (as is done by the `gantry` script), or you can specify a different path if needed.
+the `gantry` script. You do have to be aware that the working directory needs to be shared with gantry and that gantry cannot
+*see* other files from your filesystem. If you're using the `gantry` script, it will share your current working directory.
 
-Things get interesting when you run gantry from within another docker container such as a `Jenkins` job spun up from the
-kubernetes plugin. These containers can be kept pretty simple when using `gantry`. As is typical with most Jenkins jobs, it
-begins by pulling files into a workspace. These files then need to be made available to `gantry`.
+As mentioned above, other files, such as your AWS credentials, are made available by sharing them as volume mounts; you can 
+use your default credentials (as is done by the `gantry` script), or you can specify a different path if needed.
 
-The Jenkins job is running in a container and gantry is also a container. Both may be mounting the host's docker socket to perform
-docker actions, so existing mounts that are mapped are relative to the host operating system. If you look at the `gantry` bach
-script there is a `-c` option that sets up gantry to handle this.
+Things get interesting when you run gantry from within another docker container such as when a `Jenkins` job is spun up from
+the kubernetes plugin. These containers can be kept pretty simple when using `gantry`. As is typical with most Jenkins jobs, 
+it begins by pulling files into a workspace. These files then need to be made available to `gantry`.
+
+The Jenkins job is running in a container and gantry is also a container. Both may be mounting the host's docker socket to 
+perform docker actions, so existing mounts that are mapped are relative to the host operating system. If you look at the 
+`gantry` bash script there is a `-c` option that sets up gantry to handle this.
 
 Here how you address this:
 
 First you make certain that the enclosing container, say the Jenkins executor, has a volume for its workspace directory.
+
+    VOLUMES [ '/workspace' ]
 
 Next gantry get's the container id...
 
@@ -95,8 +99,8 @@ Next gantry get's the container id...
 
 Then it passes a working directory that should be set to the workspace volume for the enclosing container.
 
-Finally it runs the gantry container with the `--volumes-from` switch with the container id of the executor. This gives gantries
-utilities access to the workspace directory and other volumes so they can function correctly.
+Finally it runs the gantry container with the `--volumes-from` switch with the container id of the executor. This gives 
+gantries utilities access to the workspace directory and other volumes so they can function correctly.
 
 ## Building Gantry
 
