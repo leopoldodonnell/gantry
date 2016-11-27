@@ -9,5 +9,6 @@ docker build --rm -t gantry \
   --build-arg STERN_VERSION='1.0.0' \
   --build-arg DOCKER_VERSION='1.11.2' \
   --build-arg DOCKER_COMPOSE_VERSION='1.8.1' \
+  --build-arg HELM_VERSION='2.0.0' \
   .
 

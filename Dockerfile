@@ -45,7 +45,13 @@ RUN apk -Uuv add groff less python py-pip && \
 	pip install awscli && \
 	apk --purge -v del py-pip && \
 	rm /var/cache/apk/*
-  
+ 
+ARG HELM_VERSION="2.0.0"
+ADD http://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz ./
+RUN tar xf helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
+    cp linux-amd64/helm /bin/helm && \
+    rm -rf helm-v${HELM_VERSION}-linux-amd64.tar.gz linux-amd64
+
 # Install the help ourtput that is spit out when no command is given
 ADD help /help
 

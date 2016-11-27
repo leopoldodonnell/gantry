@@ -1,6 +1,6 @@
 # Gantry - *A moveable framework to support cloud-container infrastructure*
 
-https://quay.io/repository/leopoldodonnell/gantry 
+<img ng-src="https://guay.io/repository/leopoldodonnell/gantry/status?token=" data-title="Container Repository on Quay" src="https://quay.io/repository/leopoldodonnell/gantry/status?token=">
 
 <p align='center'><img align="center" src="gantry.jpg" width="50%" height="50%"></p>
 
@@ -17,6 +17,7 @@ enterprise infrastructure development. These tools include:
 1. [Hashicorp's terraform](https:///www.terraform.io)
 1. [Kubernetes kubectl](http://kubernetes.io/docs/user-guide/kubectl-overview/)
 1. [Werker's stern](https://github.com/wercker/stern)
+1. [Kubernetes helm](https://github.com/kubernetes/helm)
 
 These binaries need credentials and/or access to docker server to do their work, so these are made available to the container 
 through volume mounts. Available mounts include the following:
@@ -47,6 +48,7 @@ From within the gantry root folder...
         - docker
         - docker-compose
         - aws cli
+        - helm
     
     To run one of these tools against code in your current directory:
     
