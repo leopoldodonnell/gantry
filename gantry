@@ -6,6 +6,7 @@
 #
 #   -c : run gantry from within another docker container and use its volume mounts using
 #        the workdir argument as the working directory for the gantry container
+#   -d : debug mode. Drop into the container using bash as an interactive entry point
 #
 
 # Update this if you're using a private docker registry
@@ -25,6 +26,10 @@ while getopts "c:" arg > /dev/null 2>&1; do
       MY_CONTAINER_ID=`cat /proc/self/cgroup |awk -F '/' '$2 = "docker" && NR == 1 {print $NF }'`
       VOLUMES="--volumes-from ${MY_CONTAINER_ID} -w ${OPTARG}"
       ;;
+    d)
+      opt_count=$((optCount + 1))
+      DEBUG="-ti --entrypoint /bin/bash"
+      ;;
     *)
       ;;
   esac
@@ -35,4 +40,5 @@ shift $opt_count
 
 docker run --rm \
   ${VOLUMES} \
+  ${DEBUG} \
   ${REGISTRY}gantry $@
