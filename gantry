@@ -19,7 +19,7 @@ VOLUMES="-v $HOME/.aws:/root/.aws \
 
 opt_count=0
 
-while getopts "c:" arg > /dev/null 2>&1; do
+while getopts "c:d" arg > /dev/null 2>&1; do
   case "${arg}" in
     c)
       opt_count=$((opt_count + 2))
@@ -28,7 +28,7 @@ while getopts "c:" arg > /dev/null 2>&1; do
       ;;
     d)
       opt_count=$((optCount + 1))
-      DEBUG="-ti --entrypoint /bin/bash"
+      DEBUG="-ti --entrypoint /bin/sh"
       ;;
     *)
       ;;
