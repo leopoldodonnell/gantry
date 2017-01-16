@@ -15,6 +15,8 @@ REGISTRY="quay.io/leopoldodonnell/"
 VOLUMES="-v $HOME/.aws:/root/.aws \
         -v ${PWD}:/share \
         -v $HOME/.kube:/root/.kube \
+        -v $HOME/.minikube:$HOME/.minikube \
+        -v $HOME/.helm:/root/.helm \
         -v /var/run/docker.sock:/var/run/docker.sock"
 
 opt_count=0

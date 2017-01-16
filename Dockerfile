@@ -1,7 +1,7 @@
 FROM alpine:3.4
 
 # Install Packer
-ARG PACKER_VERSION='0.10.2'
+ARG PACKER_VERSION='0.12.1'
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/packer/${PACKER_VERSION}/packer_${PACKER_VERSION}_SHA256SUMS ./
 
@@ -11,7 +11,7 @@ RUN sed -i '/packer_${PACKER_VERSION}_linux_amd64.zip/!d' packer_${PACKER_VERSIO
   rm -f packer_${PACKER_VERSION}_linux_amd64.zip
 
 # Install terraform
-ARG TERRAFORM_VERSION='0.7.9'
+ARG TERRAFORM_VERSION='0.8.4'
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip ./
 ADD https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS ./
 
@@ -27,7 +27,7 @@ ADD https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION
 RUN chmod +x /bin/kubectl
 
 # Install stern
-ARG STERN_VERSION='1.0.0'
+ARG STERN_VERSION='1.2.0'
 ADD https://github.com/wercker/stern/releases/download/${STERN_VERSION}/stern_linux_amd64 /bin/stern
 RUN chmod +x /bin/stern
 
@@ -46,7 +46,7 @@ RUN apk -Uuv add groff less python py-pip && \
 	apk --purge -v del py-pip && \
 	rm /var/cache/apk/*
  
-ARG HELM_VERSION="2.0.0"
+ARG HELM_VERSION="2.1.3"
 ADD http://storage.googleapis.com/kubernetes-helm/helm-v${HELM_VERSION}-linux-amd64.tar.gz ./
 RUN tar xf helm-v${HELM_VERSION}-linux-amd64.tar.gz && \
     cp linux-amd64/helm /bin/helm && \
